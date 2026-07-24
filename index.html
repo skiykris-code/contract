@@ -205,8 +205,10 @@ document.getElementById('form').addEventListener('submit', async (e) => {
         signature: v('signature'), agreed: document.getElementById('agreed').checked
       })
     });
-    const data = await r.json();
-    if (!r.ok) throw new Error(data.error || 'Something went wrong.');
+    const raw = await r.text();
+    let data = {};
+    try { data = JSON.parse(raw); } catch (_) {}
+    if (!r.ok) throw new Error(data.error || ('Server error (' + r.status + '). Please try again in a minute, or contact the landlord on 07799 581016.'));
 
     document.getElementById('form').classList.remove('show');
     document.getElementById('st3').classList.add('on');

@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/contract.js": {
+      "includeFiles": "node_modules/pdfkit/js/data/**"
+    }
+  }
+}
