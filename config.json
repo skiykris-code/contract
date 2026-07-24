@@ -1,0 +1,43 @@
+{
+  "landlord": {
+    "fullName": "Richard Dimble LTD",
+    "address": "6 Copley Rd, Doncaster DN1 2PF",
+    "phone": "07799 581016",
+    "email": "alinasep.romania@gmail.com",
+    "signatureName": "For and on behalf of Richard Dimble LTD"
+  },
+  "depositScheme": {
+    "name": "Deposit Protection Service (DPS)",
+    "info": "The deposit will be protected with a government-approved tenancy deposit scheme within 30 days of receipt, and prescribed information will be provided to the Tenant."
+  },
+  "properties": [
+    {
+      "id": "prop-1",
+      "name": "10 Don Street",
+      "address": "10 Don Street, Doncaster, DN1 2SF",
+      "bedrooms": 3,
+      "furnished": "Unfurnished",
+      "rentPcm": 880,
+      "deposit": 1000,
+      "rentDueDay": "1st",
+      "councilTaxBand": "A",
+      "epcRating": "C",
+      "available": true,
+      "photo": ""
+    },
+    {
+      "id": "prop-2",
+      "name": "12 Don Street",
+      "address": "12 Don Street, Doncaster, DN1 2SF",
+      "bedrooms": 3,
+      "furnished": "Unfurnished",
+      "rentPcm": 880,
+      "deposit": 1000,
+      "rentDueDay": "1st",
+      "councilTaxBand": "A",
+      "epcRating": "C",
+      "available": true,
+      "photo": ""
+    }
+  ]
+}

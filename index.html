@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tenancy Agreement — Sign Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1E3B32; --green-deep:#14291F; --paper:#F6F4EE; --card:#FFFFFF;
+    --ink:#20241F; --muted:#6A6F66; --brass:#A98436; --line:#DDD8CC; --err:#A33B2E; --ok:#2C6E49;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:'Inter',sans-serif; background:var(--paper); color:var(--ink); line-height:1.55;}
+  .wrap{max-width:860px; margin:0 auto; padding:0 20px 80px;}
+
+  header{background:var(--green); color:#F1EFE6; padding:44px 20px 40px;}
+  header .wrap{padding-bottom:0}
+  .eyebrow{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#C9BE9B; margin-bottom:10px;}
+  h1{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(28px,5vw,40px); line-height:1.15;}
+  header p{margin-top:12px; max-width:560px; color:#D8D5C8; font-size:15px;}
+
+  .steps{display:flex; gap:8px; margin:28px 0 24px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);}
+  .steps span{padding:6px 12px; border:1px solid var(--line); border-radius:999px; background:var(--card);}
+  .steps span.on{background:var(--green); color:#F1EFE6; border-color:var(--green);}
+
+  h2{font-family:'Fraunces',serif; font-weight:600; font-size:22px; margin:26px 0 14px;}
+
+  .props{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px;}
+  .prop{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:20px; cursor:pointer; text-align:left; transition:border-color .15s, transform .15s; font:inherit; color:inherit;}
+  .prop:hover{border-color:var(--brass); transform:translateY(-2px);}
+  .prop:focus-visible{outline:3px solid var(--brass); outline-offset:2px;}
+  .prop.sel{border:2px solid var(--green); padding:19px;}
+  .prop h3{font-family:'Fraunces',serif; font-size:18px; font-weight:600; margin-bottom:4px;}
+  .prop .addr{font-size:13px; color:var(--muted); margin-bottom:12px;}
+  .prop .rent{font-size:20px; font-weight:600; color:var(--green);}
+  .prop .rent small{font-size:12px; font-weight:400; color:var(--muted);}
+  .prop ul{list-style:none; margin-top:10px; font-size:13px; color:var(--muted);}
+  .prop ul li{padding:2px 0;}
+
+  form{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:26px; margin-top:8px; display:none;}
+  form.show{display:block;}
+  .doc-head{border-bottom:2px solid var(--green); padding-bottom:12px; margin-bottom:20px;}
+  .doc-head .eyebrow{color:var(--brass);}
+  .doc-head strong{font-family:'Fraunces',serif; font-size:17px;}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .full{grid-column:1 / -1;}
+  label{display:block; font-size:13px; font-weight:600; margin-bottom:5px;}
+  label em{font-style:normal; font-weight:400; color:var(--muted);}
+  input,select,textarea{width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:7px; font:inherit; font-size:15px; background:#FDFCF9;}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--brass); border-color:var(--brass);}
+  .field{margin-bottom:2px;}
+
+  .sign{margin-top:24px; border:1px dashed var(--brass); border-radius:8px; padding:18px; background:#FBF8F0;}
+  .sign label{font-family:'Fraunces',serif; font-size:15px;}
+  .sign input[type=text]{font-family:'Fraunces',serif; font-style:italic; font-size:20px;}
+  .agree{display:flex; gap:10px; align-items:flex-start; margin-top:14px; font-size:13.5px;}
+  .agree input{width:auto; margin-top:3px;}
+
+  button.cta{margin-top:22px; width:100%; padding:15px; background:var(--green); color:#F1EFE6; border:0; border-radius:8px; font:inherit; font-size:16px; font-weight:600; cursor:pointer;}
+  button.cta:hover{background:var(--green-deep);}
+  button.cta:disabled{opacity:.6; cursor:wait;}
+  .msg{margin-top:14px; font-size:14px; display:none; padding:12px 14px; border-radius:7px;}
+  .msg.err{display:block; background:#F7E8E5; color:var(--err);}
+
+  .success{display:none; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:40px 28px; text-align:center; margin-top:8px;}
+  .success.show{display:block;}
+  .stamp{display:inline-block; font-family:'Fraunces',serif; font-weight:600; color:var(--ok); border:3px double var(--ok); border-radius:8px; padding:10px 22px; transform:rotate(-3deg); font-size:20px; margin-bottom:18px;}
+  .success h2{margin-top:0;}
+  .success .ref{font-size:13px; color:var(--muted); margin-top:10px;}
+  .success .ref b{color:var(--ink);}
+
+  @media (max-width:560px){ .grid{grid-template-columns:1fr;} .steps{flex-wrap:wrap;} }
+  @media (prefers-reduced-motion: reduce){ .prop{transition:none;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Private lettings · Doncaster</div>
+    <h1>Sign your tenancy agreement online</h1>
+    <p>Choose your property, fill in your details, and sign. Your completed Assured Shorthold Tenancy Agreement arrives in your inbox as a PDF within a minute.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="steps">
+    <span class="on" id="st1">1 · Property</span>
+    <span id="st2">2 · Your details</span>
+    <span id="st3">3 · Sign &amp; receive</span>
+  </div>
+
+  <h2 id="props-title">Available properties</h2>
+  <div class="props" id="props" aria-labelledby="props-title"></div>
+
+  <form id="form" novalidate>
+    <div class="doc-head">
+      <div class="eyebrow">Assured Shorthold Tenancy</div>
+      <strong id="chosen"></strong>
+    </div>
+
+    <div class="grid">
+      <div class="field"><label for="fullName">Full legal name</label><input id="fullName" required autocomplete="name"></div>
+      <div class="field"><label for="dob">Date of birth</label><input id="dob" type="date" required></div>
+      <div class="field full"><label for="currentAddress">Current address</label><input id="currentAddress" required autocomplete="street-address"></div>
+      <div class="field"><label for="phone">Phone</label><input id="phone" type="tel" required autocomplete="tel"></div>
+      <div class="field"><label for="email">Email <em>— the contract is sent here</em></label><input id="email" type="email" required autocomplete="email"></div>
+      <div class="field full"><label for="occupants">Other occupants <em>(names, optional)</em></label><input id="occupants" placeholder="e.g. Maria Popescu (partner), Luca Popescu (child)"></div>
+      <div class="field"><label for="startDate">Tenancy start date</label><input id="startDate" type="date" required></div>
+      <div class="field"><label for="termMonths">Fixed term</label>
+        <select id="termMonths"><option value="6">6 months</option><option value="12" selected>12 months</option></select>
+      </div>
+    </div>
+
+    <div class="sign">
+      <label for="signature">Type your full name to sign</label>
+      <input id="signature" type="text" required placeholder="Your full name" autocomplete="off">
+      <div class="agree">
+        <input id="agreed" type="checkbox" required>
+        <label for="agreed" style="font-weight:400; font-family:'Inter',sans-serif;">I confirm I have read this agreement, the details I provided are true, and I agree to sign it electronically. I understand this creates a legally binding tenancy agreement.</label>
+      </div>
+    </div>
+
+    <button class="cta" id="send" type="submit">Sign and email my contract</button>
+    <div class="msg err" id="err" role="alert"></div>
+  </form>
+
+  <div class="success" id="success">
+    <div class="stamp">SIGNED</div>
+    <h2>Your contract is on its way</h2>
+    <p>Check your inbox — your signed tenancy agreement PDF has been emailed to you. If it isn't there in a couple of minutes, check your spam folder.</p>
+    <p class="ref">Reference: <b id="ref"></b> — quote this in any correspondence.</p>
+  </div>
+</div>
+
+<script>
+let CONFIG = null, selected = null;
+
+async function load() {
+  const r = await fetch('config.json');
+  CONFIG = await r.json();
+  const box = document.getElementById('props');
+  CONFIG.properties.filter(p => p.available).forEach(p => {
+    const el = document.createElement('button');
+    el.type = 'button';
+    el.className = 'prop';
+    el.innerHTML = `
+      <h3>${p.name}</h3>
+      <div class="addr">${p.address}</div>
+      <div class="rent">£${p.rentPcm} <small>per month</small></div>
+      <ul>
+        <li>${p.bedrooms} bedrooms · ${p.furnished}</li>
+        <li>Deposit £${p.deposit} (protected with ${CONFIG.depositScheme.name.match(/\(([^)]+)\)/)?.[1] || 'a government scheme'})</li>
+        <li>Council tax band ${p.councilTaxBand} · EPC ${p.epcRating}</li>
+      </ul>`;
+    el.addEventListener('click', () => select(p, el));
+    box.appendChild(el);
+  });
+}
+
+function select(p, el) {
+  selected = p;
+  document.querySelectorAll('.prop').forEach(x => x.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById('chosen').textContent = p.address;
+  document.getElementById('form').classList.add('show');
+  document.getElementById('st2').classList.add('on');
+  document.getElementById('form').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+document.getElementById('form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const err = document.getElementById('err');
+  err.style.display = 'none';
+
+  if (!selected) { err.textContent = 'Please choose a property first.'; err.style.display = 'block'; return; }
+  const form = e.target;
+  if (!form.reportValidity()) return;
+
+  const v = id => document.getElementById(id).value;
+  if (v('signature').trim().toLowerCase() !== v('fullName').trim().toLowerCase()) {
+    err.textContent = 'Your signature must match your full legal name exactly.';
+    err.style.display = 'block'; return;
+  }
+  const today = new Date(); today.setHours(0,0,0,0);
+  if (new Date(v('startDate') + 'T00:00:00') < today) {
+    err.textContent = 'The start date cannot be in the past.';
+    err.style.display = 'block'; return;
+  }
+
+  const btn = document.getElementById('send');
+  btn.disabled = true; btn.textContent = 'Preparing your contract…';
+
+  try {
+    const r = await fetch('/api/contract', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        propertyId: selected.id,
+        fullName: v('fullName'), dob: v('dob'), currentAddress: v('currentAddress'),
+        phone: v('phone'), email: v('email'), occupants: v('occupants'),
+        startDate: v('startDate'), termMonths: v('termMonths'),
+        signature: v('signature'), agreed: document.getElementById('agreed').checked
+      })
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Something went wrong.');
+
+    document.getElementById('form').classList.remove('show');
+    document.getElementById('st3').classList.add('on');
+    document.getElementById('ref').textContent = data.reference;
+    document.getElementById('success').classList.add('show');
+    document.getElementById('success').scrollIntoView({ behavior:'smooth' });
+  } catch (ex) {
+    err.textContent = ex.message;
+    err.style.display = 'block';
+    btn.disabled = false; btn.textContent = 'Sign and email my contract';
+  }
+});
+
+load();
+</script>
+</body>
+</html>
